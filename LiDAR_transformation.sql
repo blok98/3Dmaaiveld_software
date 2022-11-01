@@ -1,4 +1,6 @@
--- create database for lidar geometry points, and insert converted geometry points
+-- Create database for lidar geometry points, and insert converted geometry points
+-- Lidar data is saved as pcpoints. This is inconvenient when BGT objects are geometry types.
+-- So the meshes are unpacked and transformed to 3D geometry points. 
 CREATE TABLE Lidar_geomPoints (
     lidarPoint geometry
 );
@@ -20,14 +22,8 @@ limit 100
 
 -------------------------- INTERMIDATE STEPS --------------------------
 
---retrieve BGT points from multipoints/linestr
-select linestr, (ST_DumpPoints(linestr)).geom
-from interpolated_linestrings
-limit 10
-
-
 -- Get 2d points of 3d lidar points (used for function closest point to bgt point)
-select Point(lidarpoint)
+select ST_Point(ST_X(lidarpoint),ST_Y(lidarpoint))
 from lidar_geomPoints
 limit 10
 
