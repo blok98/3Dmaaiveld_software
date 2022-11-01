@@ -1,8 +1,8 @@
 # 3Dmaaiveld_software
 Contains SQL, data and data documentation
 
-![Alt](png/download.png "Title")
-![Alt](png/hu.png "Title")
+![Alt](png/download.png "In opdracht van:")
+
 
 #### SQL CODE
 The SQL codes are seperated into code for the BGT data and code for the Lidar data. Each file are chronologically ordered. BGT_transformation.sql should be executed first.
