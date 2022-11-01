@@ -23,10 +23,18 @@ limit 100
 --retrieve BGT points from multipoints/linestr
 select linestr, (ST_DumpPoints(linestr)).geom
 from interpolated_linestrings
-limit 2
+limit 10
 
 
 -- Get 2d points of 3d lidar points (used for function closest point to bgt point)
 select Point(lidarpoint)
 from lidar_geomPoints
 limit 10
+
+-------------------------- KMEANS Clustering --------------------------
+--This code creates a new table with 15 clusters and classifies all lidarpoint to a specific cluster (cid). 
+--The purpose of this code is to identify homogeneous data when it comes to xy-position and hight.
+--Clusters can later be reorganized as polygons with help of the Voronoi Polygon tool in QGIS.
+CREATE TABLE kmeans15 AS
+(SELECT p.*, ST_ClusterKMeans(p.lidarpoint, 15) OVER() cid
+ FROM lidar_geompoints as p)
