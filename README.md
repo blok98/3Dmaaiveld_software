@@ -1,7 +1,7 @@
 # 3Dmaaiveld_software
 Contains SQL, data and data documentation
 
-![Alt](png/download.png "In opdracht van:")
+![Alt](png/download_GA_image.png "In opdracht van:")
 
 
 #### SQL CODE
